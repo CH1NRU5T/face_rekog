@@ -24,16 +24,17 @@ class CustomTextFormField extends StatelessWidget {
         keyboardType: type,
         obscureText: obscure ?? false,
         decoration: InputDecoration(
-          hintText: hintText,
+          // hintText: hintText,
+          label: Text(hintText),
           hintStyle: const TextStyle(color: Colors.grey),
           filled: true,
           fillColor: Colors.white,
           enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
+            borderSide: const BorderSide(color: Colors.black12, width: 2.5),
             borderRadius: BorderRadius.circular(10),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.white),
+            borderSide: const BorderSide(color: Colors.black12, width: 2.5),
             borderRadius: BorderRadius.circular(10),
           ),
         ));
