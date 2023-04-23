@@ -16,6 +16,10 @@ class AddFaceForm extends StatefulWidget {
 }
 
 class _AddFaceFormState extends State<AddFaceForm> {
+  bool loading = false;
+  ImagePicker imagePicker = ImagePicker();
+  XFile? image;
+  final imageNameKey = GlobalKey<FormState>();
   FaceService faceService = FaceService();
   final TextEditingController nameController = TextEditingController();
   @override
@@ -24,10 +28,47 @@ class _AddFaceFormState extends State<AddFaceForm> {
     nameController.dispose();
   }
 
-  bool loading = false;
-  ImagePicker imagePicker = ImagePicker();
-  XFile? image;
-  final imageNameKey = GlobalKey<FormState>();
+  void openCamera() async {
+    image = await imagePicker.pickImage(source: ImageSource.camera);
+    setState(() {});
+  }
+
+  void addImage() async {
+    if (image == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please select an image'),
+        ),
+      );
+      return;
+    }
+    if (loading) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please wait, adding an image'),
+        ),
+      );
+      return;
+    }
+
+    if (imageNameKey.currentState!.validate()) {
+      setState(() {
+        loading = true;
+      });
+      await faceService.indexFaces(
+        collectionId: FirebaseAuth.instance.currentUser!.uid,
+        name: nameController.text,
+        imagePassed: image,
+        context: context,
+      );
+      setState(() {
+        loading = false;
+        image = null;
+        nameController.clear();
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -73,9 +114,7 @@ class _AddFaceFormState extends State<AddFaceForm> {
                     )
                   : GestureDetector(
                       onTap: () async {
-                        image = await imagePicker.pickImage(
-                            source: ImageSource.camera);
-                        setState(() {});
+                        openCamera();
                       },
                       child: DottedBorder(
                         borderPadding: const EdgeInsets.symmetric(
@@ -122,40 +161,7 @@ class _AddFaceFormState extends State<AddFaceForm> {
               padding: const EdgeInsets.symmetric(vertical: 20),
               backgroundColor: Colors.blue,
             ),
-            onPressed: () async {
-              if (image == null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Please select an image'),
-                  ),
-                );
-                return;
-              }
-              if (loading) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text('Please wait, adding an image'),
-                  ),
-                );
-                return;
-              }
-              if (imageNameKey.currentState!.validate()) {
-                setState(() {
-                  loading = true;
-                });
-                await faceService.indexFaces(
-                  collectionId: FirebaseAuth.instance.currentUser!.uid,
-                  name: nameController.text,
-                  imagePassed: image,
-                  context: context,
-                );
-                setState(() {
-                  loading = false;
-                  image = null;
-                  nameController.clear();
-                });
-              }
-            },
+            onPressed: addImage,
             child: loading
                 ? const CircularProgressIndicator(
                     color: Colors.white,
