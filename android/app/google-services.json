@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "383359057038",
+    "project_id": "face-rekog-80169",
+    "storage_bucket": "face-rekog-80169.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:383359057038:android:5fc8020dbc7c363b649ddf",
+        "android_client_info": {
+          "package_name": "com.chinrust.facerekog.face_rekog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "383359057038-5m84tvr9480h2mjggf0luecau8mf0ufo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDor2_oi0YvoDwjUAn-yZKsCDCOCLC3zx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "383359057038-5m84tvr9480h2mjggf0luecau8mf0ufo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
