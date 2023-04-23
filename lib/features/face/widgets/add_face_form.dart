@@ -147,6 +147,7 @@ class _AddFaceFormState extends State<AddFaceForm> {
                   collectionId: FirebaseAuth.instance.currentUser!.uid,
                   name: nameController.text,
                   imagePassed: image,
+                  context: context,
                 );
                 setState(() {
                   loading = false;

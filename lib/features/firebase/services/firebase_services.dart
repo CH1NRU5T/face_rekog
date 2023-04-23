@@ -24,8 +24,8 @@ class FirebaseServices {
   void addFaceIdToCollection(String faceId, String name) async {
     final gzip = GZipCodec();
     final collectionId = _auth.currentUser!.uid;
-    Map<String, String> map = {'name': name};
-    final List<int> original = utf8.encode(map.toString());
+    // Map<String, String> map = {'name': name};
+    final List<int> original = utf8.encode(name);
     final List<int> compressed = gzip.encode(original);
     log(compressed.toString());
     final DocumentReference doc =
