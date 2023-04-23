@@ -134,7 +134,7 @@ class _AddFaceFormState extends State<AddFaceForm> {
                                 const Icon(Icons.camera_outlined),
                                 const SizedBox(height: 15),
                                 Text(
-                                  'Open Camera',
+                                  'Tap here to Open Camera',
                                   style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.grey.shade400),
