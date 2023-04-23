@@ -4,6 +4,7 @@ import 'package:aws_rekognition_api/rekognition-2016-06-27.dart' as aws;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:face_rekog/features/auth/widgets/custom_text_form_field.dart';
 import 'package:face_rekog/features/face/screens/add_face.dart';
+import 'package:face_rekog/features/face/screens/search_face.dart';
 import 'package:face_rekog/features/face/services/face_service.dart';
 import 'package:face_rekog/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -36,13 +37,12 @@ class MyApp extends StatelessWidget {
               return DefaultTabController(
                 length: 2,
                 child: Scaffold(
+                  resizeToAvoidBottomInset: false,
                   body: IndexedStack(children: const [
                     TabBarView(
                       children: [
                         AddFace(),
-                        Center(
-                          child: Icon(Icons.account_circle),
-                        ),
+                        SearchFace(),
                       ],
                     ),
                   ]),
@@ -66,8 +66,8 @@ class MyApp extends StatelessWidget {
                           text: "Add Image",
                         ),
                         Tab(
-                          icon: Icon(Icons.account_box_outlined),
-                          text: "Account",
+                          icon: Icon(Icons.image_search),
+                          text: "Search Image",
                         ),
                       ],
                     ),
