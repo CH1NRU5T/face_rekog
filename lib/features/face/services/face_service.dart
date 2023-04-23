@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:aws_rekognition_api/rekognition-2016-06-27.dart' as aws;
+import 'package:face_rekog/constants/utils.dart';
 import 'package:face_rekog/env/env.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../firebase/services/firebase_services.dart';
@@ -42,34 +44,46 @@ class FaceService {
     log('deleted all the faces in collection: $collectionId');
   }
 
-  Future<aws.SearchFacesByImageResponse> searchImage(
-      String collectionId, XFile? imageToSearch) async {
-    final image =
-        imageToSearch ?? await picker.pickImage(source: ImageSource.gallery);
-    aws.SearchFacesByImageResponse searchResponse =
-        await service.searchFacesByImage(
-      collectionId: collectionId,
-      image: aws.Image(
-        bytes: await image!.readAsBytes(),
-      ),
-    );
+  Future<aws.SearchFacesByImageResponse?> searchImage(
+      {required String collectionId,
+      required XFile imageToSearch,
+      required BuildContext context}) async {
+    aws.SearchFacesByImageResponse? searchResponse;
+    try {
+      final image = imageToSearch;
+      searchResponse = await service.searchFacesByImage(
+        collectionId: collectionId,
+        image: aws.Image(
+          bytes: await image.readAsBytes(),
+        ),
+      );
 
-    return searchResponse;
+      return searchResponse;
+    } on aws.InvalidParameterException catch (e) {
+      showSnackBar(context, '${e.message}');
+      return searchResponse;
+    } catch (e) {
+      showSnackBar(context, e.toString());
+      return searchResponse;
+    }
   }
 
   Future<void> indexFaces(
       {required String collectionId,
       required String name,
+      required BuildContext context,
       XFile? imagePassed}) async {
     final image = imagePassed;
 
     // search if the face already exists in the aws collection
-    final searchImageResponse = await searchImage(collectionId, image);
+    final searchImageResponse = await searchImage(
+        collectionId: collectionId, imageToSearch: image!, context: context);
+    if (searchImageResponse == null) return;
     if (searchImageResponse.faceMatches!.isEmpty) {
       aws.IndexFacesResponse indexFacesResponse = await service.indexFaces(
         collectionId: collectionId,
         image: aws.Image(
-          bytes: await image!.readAsBytes(),
+          bytes: await image.readAsBytes(),
         ),
       );
       log('face not found in db, adding it');
@@ -88,7 +102,7 @@ class FaceService {
     aws.IndexFacesResponse indexFacesResponse = await service.indexFaces(
       collectionId: collectionId,
       image: aws.Image(
-        bytes: await image!.readAsBytes(),
+        bytes: await image.readAsBytes(),
       ),
     );
     firebaseServices.addFaceIdToCollection(
