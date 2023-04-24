@@ -5,9 +5,9 @@ Recognizing faces just got easier!
 ### Outputs
 
 <div align=center>
-<img src="./before-adding-rick.jpeg" width=100 height=200 alt="before-adding-rick">
-<img src="./after-adding-rick.jpeg" width=100 height=200 alt="after-adding-rick">
-<img src="./no-face.jpeg" width=100 height=200 alt="no-face">
+<img src="./before-adding-rick.jpeg" width=200 height=300 alt="before-adding-rick">
+<img src="./after-adding-rick.jpeg" width=200 height=300 alt="after-adding-rick">
+<img src="./no-face.jpeg" width=200 height=300 alt="no-face">
 
 </div>
 1 Before adding rick's face to DB <br>
