@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import './features/auth/screens/auth_screen.dart';
+import 'features/auth/screens/login_screen.dart';
 import 'features/face/widgets/search_face_form.dart';
 
 void main() async {
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
                 ),
               );
             } else {
-              return const AuthScreen();
+              return const LoginScreen();
             }
           },
         ));
