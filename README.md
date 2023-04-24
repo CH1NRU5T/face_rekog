@@ -1,16 +1,15 @@
 # face_rekog
 
-A new Flutter project.
+Recognizing faces just got easier!
 
-## Getting Started
+### Things left to be implemented:
+- [ ] Creating a SignUp Page
+- [ ] Modifying Login/Signup
+- [ ] Change bottom button to a floation action button
+- [ ] change ui according to device sizes
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Features:
+- [X] Add faces to database
+- [X] Scan faces and look into database if the face exists
+- [X] Return the name of the face
+- [X] If a face is added that is already in the db, then the new face will be stored with the original name.
