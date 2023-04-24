@@ -30,26 +30,33 @@ class AuthService {
         showSnackBar(context, 'No user found for that email.');
       } else if (e.code == 'wrong-password') {
         showSnackBar(context, 'Wrong password provided for that user.');
+      } else {
+        showSnackBar(context, e.message.toString());
       }
     } catch (e) {
       showSnackBar(context, e.toString());
     }
-    // register with email & password
-    // Future registerWithEmailAndPassword(String email, String password) async {
-    //   try {
-    //     AuthResult result = await _auth.createUserWithEmailAndPassword(
-    //         email: email, password: password);
-    //     FirebaseUser user = result.user;
+  }
 
-    //     // create a new document for the user with the uid
-    //     await DatabaseService(uid: user.uid)
-    //         .updateUserData('0', 'new crew member', 100);
-
-    //     return _userFromFirebaseUser(user);
-    //   } catch (e) {
-    //     print(e.toString());
-    //     return null;
-    //   }
-    // }
+  // register with email & password
+  void registerWithEmailAndPassword(
+      {required String email,
+      required String password,
+      required BuildContext context}) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      showSnackBar(context, 'Registered successfully, please login');
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        showSnackBar(context, 'Email already in use.');
+      } else if (e.code == 'weak-password') {
+        showSnackBar(context, 'Password is too weak.');
+      } else {
+        showSnackBar(context, e.message.toString());
+      }
+    } catch (e) {
+      return null;
+    }
   }
 }
