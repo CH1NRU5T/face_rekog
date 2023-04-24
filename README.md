@@ -3,8 +3,8 @@
 Recognizing faces just got easier!
 
 ### Things left to be implemented:
-- [ ] Creating a SignUp Page
-- [ ] Modifying Login/Signup
+- [X] Creating a SignUp Page
+- [X] Modifying Login/Signup
 - [ ] Change bottom button to a floation action button
 - [ ] change ui according to device sizes
 
