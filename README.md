@@ -20,6 +20,7 @@ Recognizing faces just got easier!
 - [x] Modifying Login/Signup
 - [ ] Change bottom button to a floation action button
 - [ ] change ui according to device sizes
+- [ ] create an onboarding screen
 
 ### Features
 
