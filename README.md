@@ -18,9 +18,11 @@ Recognizing faces just got easier!
 
 - [x] Creating a SignUp Page
 - [x] Modifying Login/Signup
-- [ ] Change bottom button to a floation action button
-- [ ] change ui according to device sizes
+- [x] change ui according to device sizes
 - [ ] create an onboarding screen
+- [ ] testing
+- [ ] user should automatically be logged in after registering with a new id
+- [ ] Google sign-in
 
 ### Features
 

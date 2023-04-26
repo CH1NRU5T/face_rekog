@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         onGenerateRoute: (settings) => generateRoute(settings),
-        title: 'Flutter Demo',
+        title: 'Face Rekog',
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
                         ),
                       ),
                     ],
-                    title: const Text('Home'),
+                    title: const Text('Face Rekog'),
                     bottom: const TabBar(
                       tabs: [
                         Tab(

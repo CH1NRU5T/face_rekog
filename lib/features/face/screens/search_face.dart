@@ -54,11 +54,6 @@ class _SearchFaceState extends State<SearchFace> {
       setState(() {
         loading = false;
       });
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text('Face Not Found'),
-      //   ),
-      // );
       return;
     }
 
