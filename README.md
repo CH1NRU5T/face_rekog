@@ -14,7 +14,22 @@ Recognizing faces just got easier!
 2 After adding rick's face to DB <br>
 3 If there are no faces in the image
 
-### Things left to be implemented
+<br>
+<br>
+
+## How to run?
+- Run `flutter pub get` in the root folder
+- in the root folder, create a `.env` file with the following contents:
+```.env
+ACCESSKEY=<your_aws_access_key_here>
+SECRETKEY=<your_aws_secret_key_here>
+```
+- run `flutter pub run build_runner build` in root folder, this will generate an `env.g.dart` in the root/env 
+- run `flutter run` to run the app.
+<br>
+
+
+# Features to be implemented
 
 - [x] Creating a SignUp Page
 - [x] Modifying Login/Signup
