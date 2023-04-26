@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:aws_rekognition_api/rekognition-2016-06-27.dart' as aws;
 import 'package:face_rekog/constants/utils.dart';
 import 'package:face_rekog/env/env.dart';
@@ -22,15 +20,12 @@ class FaceService {
   void createCollection() async {
     final list = await service.listCollections();
     if (list.collectionIds!.contains(FirebaseAuth.instance.currentUser!.uid)) {
-      log('collection already exists');
       final res = await service.listFaces(
           collectionId: FirebaseAuth.instance.currentUser!.uid);
-      log('faces already in the collection = ${res.faces!.length}');
       return;
     }
     await service.createCollection(
         collectionId: FirebaseAuth.instance.currentUser!.uid);
-    log('created collection ${FirebaseAuth.instance.currentUser!.uid}');
   }
 
   void deleteAllFacesFromCollection({required String collectionId}) async {
@@ -41,7 +36,6 @@ class FaceService {
       faceIds.add(element.faceId!);
     }
     await service.deleteFaces(collectionId: collectionId, faceIds: faceIds);
-    log('deleted all the faces in collection: $collectionId');
   }
 
   Future<aws.SearchFacesByImageResponse?> searchImage(
@@ -86,7 +80,6 @@ class FaceService {
           bytes: await image.readAsBytes(),
         ),
       );
-      log('face not found in db, adding it');
       firebaseServices.addFaceIdToCollection(
         indexFacesResponse.faceRecords!.first.face!.faceId!,
         name,
@@ -95,10 +88,8 @@ class FaceService {
 
       return;
     }
-    log('face found in db');
     // get the faceID of the that was matched in aws collection
     final matchedFaceId = searchImageResponse.faceMatches!.first.face!.faceId;
-    log('matchedFaceId: $matchedFaceId');
     // get the name of the face from firebase using the faceID
     String faceFoundName = await firebaseServices.getFaceName(matchedFaceId!);
     aws.IndexFacesResponse indexFacesResponse = await service.indexFaces(
