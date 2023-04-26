@@ -91,6 +91,8 @@ class FaceService {
         indexFacesResponse.faceRecords!.first.face!.faceId!,
         name,
       );
+      showSnackBar(context, 'Face added to Database');
+
       return;
     }
     log('face found in db');
@@ -109,5 +111,6 @@ class FaceService {
       indexFacesResponse.faceRecords!.first.face!.faceId!,
       faceFoundName,
     );
+    showSnackBar(context, 'Face added to Database');
   }
 }

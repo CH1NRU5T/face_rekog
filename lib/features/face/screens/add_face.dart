@@ -5,7 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../constants/utils.dart';
 import '../../auth/widgets/custom_text_form_field.dart';
 import '../services/face_service.dart';
 
@@ -67,7 +66,6 @@ class _AddFaceState extends State<AddFace> {
         image = null;
         nameController.clear();
       });
-      showSnackBar(context, 'Face added to Database');
     }
   }
 
@@ -76,7 +74,7 @@ class _AddFaceState extends State<AddFace> {
     return Form(
       key: imageNameKey,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -89,30 +87,32 @@ class _AddFaceState extends State<AddFace> {
                 type: TextInputType.name,
               ),
             ),
-            // const SizedBox(height: 10),
+            const SizedBox(height: 10),
             image != null
                 ? Expanded(
                     flex: 8,
                     child: Column(
                       children: [
-                        SizedBox(
-                          // width: MediaQuery.of(context).size.width * 0.8,
-                          // height: MediaQuery.of(context).size.height * 0.59,
+                        Expanded(
+                          flex: 5,
                           child: Image.file(
                             fit: BoxFit.contain,
                             File(image!.path),
                           ),
                         ),
                         // const SizedBox(height: 10),
-                        IconButton(
-                          onPressed: () {
-                            setState(
-                              () {
-                                image = null;
-                              },
-                            );
-                          },
-                          icon: const Icon(Icons.delete_outline),
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(
+                                () {
+                                  image = null;
+                                },
+                              );
+                            },
+                            icon: const Icon(Icons.delete_outline),
+                          ),
                         ),
                       ],
                     ),
@@ -150,24 +150,26 @@ class _AddFaceState extends State<AddFace> {
             const SizedBox(height: 10),
             Expanded(
               flex: 1,
+              // child: Visibility(child: child),
               child: TextButton(
-                style: TextButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  backgroundColor: Colors.blue,
-                ),
-                onPressed: addImage,
-                child: loading
-                    ? const CircularProgressIndicator(
-                        strokeWidth: 1,
-                        color: Colors.white,
-                      )
-                    : const Text(
-                        'Add',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-              ),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                  ),
+                  onPressed: addImage,
+                  child: Visibility(
+                    visible: !loading,
+                    replacement: const CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                    child: const Text(
+                      'Add',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )),
             ),
-            const SizedBox(height: 10),
           ],
         ),
       ),
