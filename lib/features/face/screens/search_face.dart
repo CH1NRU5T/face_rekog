@@ -90,7 +90,7 @@ class _SearchFaceState extends State<SearchFace> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child:
-                          Stack(alignment: Alignment.center, children: const [
+                          const Stack(alignment: Alignment.center, children: [
                         LinearProgressIndicator(
                           color: Color(0xff08BC12),
                           value: 0.8,

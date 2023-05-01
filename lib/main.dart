@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                 length: 2,
                 child: Scaffold(
                   resizeToAvoidBottomInset: false,
-                  body: IndexedStack(children: const [
+                  body: const IndexedStack(children: [
                     TabBarView(
                       children: [
                         AddFace(),

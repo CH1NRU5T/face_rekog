@@ -5,7 +5,8 @@
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
-### Recognizing faces just got easier with Face Rekog!
+### Recognizing faces just got easier with Face Rekog
+
 <br>
 
 ### Outputs
@@ -24,16 +25,18 @@
 <br>
 
 ## How to run?
+
 - Run `flutter pub get` in the root folder
 - in the root folder, create a `.env` file with the following contents:
+
 ```.env
 ACCESSKEY=<your_aws_access_key_here>
 SECRETKEY=<your_aws_secret_key_here>
 ```
-- run `flutter pub run build_runner build` in root folder, this will generate an `env.g.dart` in the root/env 
-- run `flutter run` to run the app.
-<br>
 
+- run `flutter pub run build_runner build` in root folder, this will generate an `env.g.dart` in the root/env
+- run `flutter run` to run the app.
+  <br>
 
 # Features to be implemented
 
@@ -45,9 +48,9 @@ SECRETKEY=<your_aws_secret_key_here>
 - [ ] user should automatically be logged in after registering with a new id
 - [ ] Google sign-in
 - [ ] Fix the login issue
-- [ ] Change textbutton on register screen
- 
-### Features
+- [x] Change textbutton on register screen
+
+# Features
 
 - [x] Add faces to database
 - [x] Scan faces and look into database if the face exists

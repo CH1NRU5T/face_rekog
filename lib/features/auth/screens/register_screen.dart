@@ -78,7 +78,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                   },
                   child: const Text(
-                    'Login',
+                    'Register',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
