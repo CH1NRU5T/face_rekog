@@ -44,7 +44,9 @@ SECRETKEY=<your_aws_secret_key_here>
 - [ ] testing
 - [ ] user should automatically be logged in after registering with a new id
 - [ ] Google sign-in
-
+- [ ] Fix the login issue
+- [ ] Change textbutton on register screen
+ 
 ### Features
 
 - [x] Add faces to database
